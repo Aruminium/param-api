@@ -8,9 +8,11 @@ https://zenn.dev/re24_1986/articles/8520ac3f9a0187
 
 ### 1. docker/env/db.env を作成する
 
+USERとPASSWORDは学籍番号
+
 ```env
-POSTGRES_USER="admin"
-POSTGRES_PASSWORD="postgres"
+POSTGRES_USER=
+POSTGRES_PASSWORD=
 POSTGRES_SERVER=127.0.0.1
 POSTGRES_PORT=5432
 POSTGRES_DB="test"
@@ -39,7 +41,9 @@ pom.xml にpostgresql Driver を追加する
 
 接続タイプは default
 
+<img width="751" alt="スクリーンショット 2022-08-12 12 07 40" src="https://user-images.githubusercontent.com/73931800/184277684-d5063423-9b6f-4192-bdde-0efde025a8ba.png">
 
+接続のテストで成功したら、OKを押す
 
 application.properties を書き換える
 
@@ -47,6 +51,8 @@ spring.datasource.driver-class-nameとspring.datasource.urlを以下のように
 ```
 spring.datasource.driver-class-name=org.postgresql.Driver
 spring.datasource.url=jdbc:postgresql://localhost:5432/test
+spring.datasource.username=db.envのPOSTGRES_USER
+spring.datasource.password=db.envのPOSTGRES_PASSWORD
 ```
 
 ### 4. あとは今まで通り
