@@ -22,7 +22,9 @@ services:
     env_file:
       - docker/env/db.env
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./db/postgres_data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d
+      - ./db/config/postgresql.conf:/etc/postgresql/postgresql.conf
     ports:
       - 5432:5432
     networks:
