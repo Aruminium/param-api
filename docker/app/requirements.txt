@@ -3,3 +3,4 @@ uvicorn
 pydantic
 alembic
 sqlalchemy
+openpyxl

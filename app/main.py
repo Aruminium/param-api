@@ -1,7 +1,8 @@
 from fastapi import FastAPI
+from database import PtjModel
 
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+@app.post("/pdj")
+def read_json(ptj_model: PtjModel):
+    

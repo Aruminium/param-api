@@ -58,3 +58,13 @@ spring.datasource.password=db.envのPOSTGRES_PASSWORD
 ### 4. あとは今まで通り
 
 試しにユーザ作成をしてみよう
+
+### pythonでのDDD先行事例
+
+- [Python で学ぶ実践的なドメイン駆動設計とレイヤードアーキテクチャ](https://speakerdeck.com/iktakahiro/ddd-and-onion-architecture-in-python)
+- [ドメイン駆動でインターフェース指向な開発](https://qiita.com/yu-sa/items/e0033ae312669256cd8a)
+
+
+### tips
+- [Python で interface を扱う](https://zenn.dev/plhr7/articles/36ddd240ccbb97)
+- [DDD基礎解説：Entity、ValueObjectってなんなんだ](https://little-hands.hatenablog.com/entry/2018/12/09/entity-value-object)
