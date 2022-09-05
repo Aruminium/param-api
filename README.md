@@ -68,3 +68,5 @@ spring.datasource.password=db.envのPOSTGRES_PASSWORD
 ### tips
 - [Python で interface を扱う](https://zenn.dev/plhr7/articles/36ddd240ccbb97)
 - [DDD基礎解説：Entity、ValueObjectってなんなんだ](https://little-hands.hatenablog.com/entry/2018/12/09/entity-value-object)
+- [テスト](https://fastapi.tiangolo.com/ja/tutorial/testing/)
+- [PythonでGoogle Driveにファイルをアップロードする](https://laboratory.kazuuu.net/upload-files-to-google-drive-with-python/)

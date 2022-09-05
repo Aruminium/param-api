@@ -1,1 +1,0 @@
-from ptj import PtjModel
