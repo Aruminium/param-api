@@ -4,7 +4,7 @@ https://libproc.com/fastapi-define-model-and-migration/#index_id0
 
 https://zenn.dev/re24_1986/articles/8520ac3f9a0187
 
-## 手順a
+## 手順
 
 ### 1. docker/env/db.env を作成する
 
