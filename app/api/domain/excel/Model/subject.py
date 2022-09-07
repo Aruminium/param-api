@@ -1,6 +1,6 @@
 from typing import List
 from .ptj import PtjModel
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class SubjectModel(BaseModel):
@@ -9,11 +9,10 @@ class SubjectModel(BaseModel):
   APIで受け取るsubject_dataの値オブジェクト(VO)
 
   Attributes:
-      subject (str): 教科名
+      name (str): 教科名
       teachers (List[str]): 担当教員のリスト
-      ptjList (List[ptjModel]): ptjのリスト
   """
-  subject: str
-  teachers: List[str]
-  ptjList: List[PtjModel]
+  name: str = Field(None, example="ソフトウェア工学概論")
+  teacher_name: str = "小松川浩"
+
 
