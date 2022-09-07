@@ -2,5 +2,4 @@ __pycache__/
 docker/env/*.env
 db/postgres_data/
 app/__pycache__
-output.xlsx
-~$output.xlsx
+*.pdf

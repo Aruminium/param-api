@@ -4,8 +4,10 @@ services:
   api:
     container_name: api
     build:
-      context: ./docker/app
+      context: ./app
       dockerfile: Dockerfile
+    env_file:
+      - docker/env/db.env
     volumes:
       - ./app:/app
     ports:
