@@ -16,13 +16,14 @@ create table subjects(
 
 drop table if exists ptj_requests;
 create table ptj_requests(
+    ptj_id serial primary key not null,
     -- 外部キー
     user_student_number varchar(32) not null references users(student_number),
     subject_id serial not null references subjects(id),
     -- キー
     ptj_date date not null, --アルバイトの日付
-    working_hours_start float not null, --開始時間
-    working_hours_finish float not null, --終了時間
+    working_hours_start time not null, --開始時間
+    working_hours_finish time not null, --終了時間
     break_time float not null, --休憩時間
     working_hours float not null, --勤務時間
     working_content varchar(64) not null --勤務内容

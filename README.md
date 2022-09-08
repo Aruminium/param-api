@@ -1,12 +1,61 @@
-https://zenn.dev/sh0nk/books/537bb028709ab9/viewer/d3f074
+![issues](https://img.shields.io/github/issues/Aruminium/param-api?style=flat)
+![docker](https://img.shields.io/badge/-Docker-EEE.svg?logo=docker&style=flat)
+![postgres](https://img.shields.io/badge/-PostgreSQL-336791.svg?logo=postgresql&style=flat)
+![FastAPI](https://img.shields.io/badge/-FastAPI-blue.svg?logo=fastAPI&style=flat)
 
-https://libproc.com/fastapi-define-model-and-migration/#index_id0
+# param-api
 
-https://zenn.dev/re24_1986/articles/8520ac3f9a0187
+大学の課外活動の1つである学内アルバイトの業務報告入力をデジタル化するプロジェクトのAPIとデータベースのリポジトリ
 
-## 手順
+# 目的
 
-### 1. docker/env/db.env を作成する
+主にPostされたjsonを元にExcelファイルを扱うために作成されたリポジトリである。
+
+これとは別にフロントエンドとバックエンドはJavaのWicketとSpringを用いて実装され、IDEにIntellijを対象としている
+
+# 機能
+
+- FastAPI 0.82.0
+- postgreSQL 14
+- SQLAlchemy 1.4.41
+- openpyxl 3.0.10
+
+[APIコンテナのドキュメント](https://github.com/Aruminium/param-api/tree/main/app)
+
+[DBコンテナのドキュメント](https://github.com/Aruminium/param-api/tree/main/db)
+
+
+## エクセルファイルを操作する
+
+
+
+## xlsx -> pdf
+
+オープンソースのibreofficeをDocker上にインストールし呼び出して用いる
+
+```python
+def convertExcelToPdf(self):
+  cmd = []
+  cmd.append("libreoffice")
+  cmd.append("--headless")
+  cmd.append("--nologo")
+  cmd.append("--nofirststartwizard")
+  cmd.append("--convert-to")
+  cmd.append("pdf")
+  cmd.append("--outdir")
+  cmd.append("/app/domain/excel/")
+  cmd.append(f"/app/domain/excel/{self.file_name}.xlsx")
+
+  subprocess.run(" ".join(cmd), shell=True)
+```
+
+# APIエンドポイント
+
+
+
+# セットアップ
+
+## 1. docker/env/db.env を作成する
 
 USERとPASSWORDは学籍番号
 
@@ -18,14 +67,14 @@ POSTGRES_PORT=5432
 POSTGRES_DB="test"
 ```
 
-### 2. コンテナを立ち上げる
+## 2. コンテナを立ち上げる
 
 ```shell
 $ docker compose build # buildさせる -> docker image生成
 $ docker compose up -d # 実際にコンテナを起動させる
 ```
 
-### 3. intellijからDBにアクセス
+## 3. intellijからDBにアクセス
 
 pom.xml にpostgresql Driver を追加する
 
@@ -55,18 +104,26 @@ spring.datasource.username=db.envのPOSTGRES_USER
 spring.datasource.password=db.envのPOSTGRES_PASSWORD
 ```
 
-### 4. あとは今まで通り
+## 4. あとは今まで通り
 
 試しにユーザ作成をしてみよう
 
-### pythonでのDDD先行事例
+# 課題点
+
+- Dockerfileのリファクタリングによる軽量化＆高速化
+- データベースチューニング
+
+
+# pythonでのDDD先行事例
 
 - [Python で学ぶ実践的なドメイン駆動設計とレイヤードアーキテクチャ](https://speakerdeck.com/iktakahiro/ddd-and-onion-architecture-in-python)
 - [ドメイン駆動でインターフェース指向な開発](https://qiita.com/yu-sa/items/e0033ae312669256cd8a)
 
 
-### tips
+# tips
 - [Python で interface を扱う](https://zenn.dev/plhr7/articles/36ddd240ccbb97)
 - [DDD基礎解説：Entity、ValueObjectってなんなんだ](https://little-hands.hatenablog.com/entry/2018/12/09/entity-value-object)
 - [テスト](https://fastapi.tiangolo.com/ja/tutorial/testing/)
 - [PythonでGoogle Driveにファイルをアップロードする](https://laboratory.kazuuu.net/upload-files-to-google-drive-with-python/)
+- [データベース（RDB）設計の進め方！](https://qiita.com/ryota_i/items/294281b57cc9783bf2c1)
+- [Dockerfileのベストプラクティス](https://qiita.com/Tsuyozo/items/c706a04848c3fbbaf055)
