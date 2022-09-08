@@ -26,7 +26,7 @@ class Excel:
     self.file_name = f"{self.name}-{self.ptj_list[0].date.strftime('%Y年%-m月')}"
 
   def edit(self):
-    wb = px.load_workbook("/app/domain/excel/SA.xlsx")
+    wb = px.load_workbook("/app/api/domain/excel/SA.xlsx")
     ws = wb.active
     # 学籍番号
     ws["J4"].value = self.student_number
@@ -56,7 +56,7 @@ class Excel:
       sum_working_hours += ptj.working_hours
     # 活動時間計
     ws["O34"].value = f"{sum_working_hours}時間"
-    wb.save(f"/app/domain/excel/{self.file_name}.xlsx")
+    wb.save(f"/app/api/domain/excel/{self.file_name}.xlsx")
 
   def convertExcelToPdf(self):
     cmd = []
@@ -67,7 +67,7 @@ class Excel:
     cmd.append("--convert-to")
     cmd.append("pdf")
     cmd.append("--outdir")
-    cmd.append("/app/domain/excel/")
-    cmd.append(f"/app/domain/excel/{self.file_name}.xlsx")
+    cmd.append("/app/api/domain/excel/")
+    cmd.append(f"/app/api/domain/excel/{self.file_name}.xlsx")
 
     subprocess.run(" ".join(cmd), shell=True)
