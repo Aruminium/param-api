@@ -4,6 +4,7 @@ from typing import List
 import math
 import subprocess
 import calendar
+import os
 
 class Excel:
   def __init__(self, post_data: PostModel):
@@ -46,11 +47,11 @@ class Excel:
       ws[f"E{14+index}"].value = self.d_week[ptj.date.strftime("%a")]
       # 開始勤務時間
       # d: 少数部 i: 整数部
-      ws[f"H${14+index}"].value = ptj.working_start.strftime("%-H:%M")
+      ws[f"H{14+index}"].value = ptj.working_start.strftime("%-H:%M")
       # 終了勤務時間
-      ws[f"L${14+index}"].value = ptj.working_finish.strftime("%-H:%M")
+      ws[f"L{14+index}"].value = ptj.working_finish.strftime("%-H:%M")
       # 合計勤務時間
-      ws[f"O${14+index}"].value = f"{ptj.working_hours}時間"
+      ws[f"O{14+index}"].value = f"{ptj.working_hours}時間"
       # 活動内容詳細
       ws[f"S{14+index}"].value = f"{ptj.working_content} 休憩:{ptj.break_time}時間"
       sum_working_hours += ptj.working_hours
@@ -71,3 +72,18 @@ class Excel:
     cmd.append(f"/app/api/domain/excel/{self.file_name}.xlsx")
 
     subprocess.run(" ".join(cmd), shell=True)
+
+  def pdfCompress(self):
+    cmd = []
+    cmd.append("-sDEVICE=pdfwrite")
+    cmd.append("-dPDFSETTINGS=/printer")
+    cmd.append("-dBATCH")
+    cmd.append("-dNOPAUSE")
+    cmd.append("-dSAFER")
+    cmd.append(f"-sOUTPUTFILE=/app/api/domain/excel/{self.file_name}.pdf")
+    cmd.append(f"/app/api/domain/excel/{self.file_name}.pdf")
+
+    subprocess.run(" ".join(cmd), shell=True)
+
+  def removeFiles(self):
+    os.remove(f"/app/api/domain/excel/{self.file_name}.xlsx")

@@ -12,6 +12,7 @@ def read_json(post_data: PostModel):
   excel = Excel(post_data)
   excel.edit()
   excel.convertExcelToPdf()
+  excel.pdfCompress()
   pass
 
 app.include_router(subject.router)

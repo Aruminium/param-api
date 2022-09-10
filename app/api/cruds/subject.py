@@ -19,12 +19,22 @@ async def get_subjects(db: AsyncSession) -> List[Tuple[int, str, str]]:
         subject_model.Subject.id,
         subject_model.Subject.name,
         subject_model.Subject.teacher_name,
-      )
+      ).order_by(subject_model.Subject.id)
     )
   )
   return result.all()
 
-async def get_subject(db: AsyncSession, subject_id: int) -> Optional[subject_model.Subject]:
+async def get_subject_name(db: AsyncSession, name: str) -> Tuple[int, str, str]:
+  result: Result = await db.execute(
+    select(
+      subject_model.Subject.id,
+      subject_model.Subject.name,
+      subject_model.Subject.teacher_name,
+    ).filter(subject_model.Subject.name == name)
+  )
+  return result.all()
+
+async def get_subject_detail(db: AsyncSession, subject_id: int) -> Optional[subject_model.Subject]:
   result: Result = await db.execute(
     select(subject_model.Subject).filter(subject_model.Subject.id == subject_id)
   )
