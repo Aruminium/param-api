@@ -4,3 +4,4 @@ db/postgres_data/
 app/__pycache__
 *.pdf
 .DS_Store
+.pytest_cache

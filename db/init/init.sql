@@ -14,22 +14,21 @@ create table subjects(
     teacher_name varchar(32) not null --担当教員の名前
 );
 
-
 drop table if exists ptj_requests;
 create table ptj_requests(
     ptj_id serial primary key,
     -- 外部キー
     user_student_number varchar(32) not null references users(student_number)
-        on delete cascade
+        on delete cascade,
         on update cascade,
     subject_id serial not null references subjects(id)
-        on delete cascade
+        on delete cascade,
         on update cascade,
     -- キー
     ptj_date date not null, --アルバイトの日付
-    working_hours_start time not null, --開始時間
-    working_hours_finish time not null, --終了時間
-    break_time float not null, --休憩時間
-    working_hours float not null, --勤務時間
-    working_content varchar(64) not null --勤務内容
+    start_time time not null, --開始時間
+    finish_time time not null, --終了時間
+    break_time_minutes int not null, --休憩時間
+    office_hours float not null, --勤務時間
+    duties varchar(64) not null --勤務内容
 );
