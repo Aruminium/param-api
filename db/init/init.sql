@@ -19,10 +19,10 @@ create table ptj_requests(
     ptj_id serial primary key,
     -- 外部キー
     user_student_number varchar(32) not null references users(student_number)
-        on delete cascade,
+        on delete cascade
         on update cascade,
     subject_id serial not null references subjects(id)
-        on delete cascade,
+        on delete cascade
         on update cascade,
     -- キー
     ptj_date date not null, --アルバイトの日付

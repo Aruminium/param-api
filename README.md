@@ -67,11 +67,21 @@ POSTGRES_PORT=5432
 POSTGRES_DB="test"
 ```
 
+### 1.1. docker/env/auth.env を作成する
+
+デプロイ時にSECRET_KEYの値を変えます
+```env
+SECRET_KEY='e40e2e83874fef7b97a1442c359cfc9ec79b78e4b13a22a97f90a9b5eff6e469'
+ALGORITHM='HS256'
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
+
 ## 2. コンテナを立ち上げる
 
 ```shell
 $ docker compose build # buildさせる -> docker image生成
 $ docker compose up -d # 実際にコンテナを起動させる
+$ docker compose down # 辞める時 (プロセスを止める)
 ```
 
 ## 3. intellijからDBにアクセス
@@ -104,7 +114,23 @@ spring.datasource.username=db.envのPOSTGRES_USER
 spring.datasource.password=db.envのPOSTGRES_PASSWORD
 ```
 
-## 4. あとは今まで通り
+## 4. FastAPIで教科情報を追加しよう
+
+subjectsテーブルに値が入っていないと、javaの方でエラーが出るので追加しよう
+
+### 4.1 dockerコンテナたちを起動する
+
+```shell
+docker compose up -d
+```
+
+でコンテナたちを立ち上げる(既に立ち上がっている場合は必要ない)
+
+### 4.2 localhost:5000/docsにアクセス
+
+[localhost:5000/docs](localhost:5000/docs)にアクセスすると以下のSwaggerUI(APIのドキュメント)が表示される
+
+
 
 試しにユーザ作成をしてみよう
 
