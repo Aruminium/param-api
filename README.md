@@ -31,7 +31,7 @@
 
 ## xlsx -> pdf
 
-オープンソースのibreofficeをDocker上にインストールし呼び出して用いる
+オープンソースのlibreofficeをDocker上にインストールし呼び出して用いる
 
 ```python
 def convertExcelToPdf(self):
