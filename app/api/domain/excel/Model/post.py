@@ -6,5 +6,5 @@ from pydantic import BaseModel
 
 class PostModel(BaseModel):
   user: UserModel
-  subject_data: SubjectModel
+  subject: SubjectModel
   ptj_list: List[PtjModel]

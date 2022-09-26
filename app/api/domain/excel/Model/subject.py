@@ -10,9 +10,9 @@ class SubjectModel(BaseModel):
 
   Attributes:
       name (str): 教科名
-      teachers (List[str]): 担当教員のリスト
+      teacher_name (str): 担当教員
   """
-  name: str = Field(None, example="ソフトウェア工学概論")
-  teacher_name: str = "小松川浩"
+  name: str = Field(None, example="教科")
+  teacher_name: str = "担当教員"
 
 

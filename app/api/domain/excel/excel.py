@@ -24,7 +24,7 @@ class Excel:
     self.start_date = f"{yaer}年{month}月1日"
     self.end_date = f"{yaer}年{month}月{month_range}日"
     # ファイル名
-    self.file_name = f"{self.name}-{self.ptj_list[0].date.strftime('%Y年%-m月')}"
+    self.file_name = f"{self.student_number}-{self.ptj_list[0].date.strftime('%Y-%-m')}"
 
   def edit(self):
     wb = px.load_workbook("/app/api/domain/excel/SA.xlsx")
