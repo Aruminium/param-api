@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, HTTPException
-from fastapi.responses import FileResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 import cruds.subject as subject_crud
 from db import get_db
@@ -33,7 +32,3 @@ async def delete_subject(subject_id: int, db: AsyncSession = Depends(get_db)):
     raise HTTPException(status_code=404, detail="Subject not found")
   return await subject_crud.delete_subject(db, original=subject)
 
-@router.post("/test")
-async def test():
-  response = FileResponse(path="/app/api/domain/excel/山田太郎-2022年9月.pdf", filename="test.pdf")
-  return response

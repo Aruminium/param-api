@@ -7,12 +7,13 @@ from routers import subject
 
 app = FastAPI()
 
-@app.post("/pdj")
+@app.post("/ptj")
 def read_json(post_data: PostModel):
   excel = Excel(post_data)
+  excel.removeFiles()
   excel.edit()
   excel.convertExcelToPdf()
-  excel.pdfCompress()
-  pass
+  response = excel.pdfCompress()
+  return response
 
 app.include_router(subject.router)

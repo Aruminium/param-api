@@ -5,6 +5,8 @@ import math
 import subprocess
 import calendar
 import os
+import shutil
+from fastapi.responses import FileResponse
 
 class Excel:
   def __init__(self, post_data: PostModel):
@@ -15,8 +17,8 @@ class Excel:
     self.student_number = post_data.user.student_number
     self.name = post_data.user.name
     self.user_type = post_data.user.user_type
-    self.subject = post_data.subject_data.name
-    self.teacher_name = post_data.subject_data.teacher_name
+    self.subject = post_data.subject.name
+    self.teacher_name = post_data.subject.teacher_name
 
     yaer = self.ptj_list[0].date.strftime('%-Y')
     month = self.ptj_list[0].date.strftime('%-m')
@@ -24,7 +26,7 @@ class Excel:
     self.start_date = f"{yaer}年{month}月1日"
     self.end_date = f"{yaer}年{month}月{month_range}日"
     # ファイル名
-    self.file_name = f"{self.student_number}-{self.ptj_list[0].date.strftime('%Y-%-m')}"
+    self.file_name = f"{self.student_number}-{self.ptj_list[0].date.strftime('%Y-%-m')}-{self.subject}"
 
   def edit(self):
     wb = px.load_workbook("/app/api/domain/excel/SA.xlsx")
@@ -47,17 +49,17 @@ class Excel:
       ws[f"E{14+index}"].value = self.d_week[ptj.date.strftime("%a")]
       # 開始勤務時間
       # d: 少数部 i: 整数部
-      ws[f"H{14+index}"].value = ptj.working_start.strftime("%-H:%M")
+      ws[f"H{14+index}"].value = ptj.start_time.strftime("%-H:%M")
       # 終了勤務時間
-      ws[f"L{14+index}"].value = ptj.working_finish.strftime("%-H:%M")
+      ws[f"L{14+index}"].value = ptj.finish_time.strftime("%-H:%M")
       # 合計勤務時間
-      ws[f"O{14+index}"].value = f"{ptj.working_hours}時間"
+      ws[f"O{14+index}"].value = f"{ptj.office_hours}時間"
       # 活動内容詳細
-      ws[f"S{14+index}"].value = f"{ptj.working_content} 休憩:{ptj.break_time}時間"
-      sum_working_hours += ptj.working_hours
+      ws[f"S{14+index}"].value = f"{ptj.duties} 休憩:{ptj.break_time_minutes}時間"
+      sum_working_hours += ptj.office_hours
     # 活動時間計
     ws["O34"].value = f"{sum_working_hours}時間"
-    wb.save(f"/app/api/domain/excel/{self.file_name}.xlsx")
+    wb.save(f"/app/api/domain/excel/files/{self.file_name}.xlsx")
 
   def convertExcelToPdf(self):
     cmd = []
@@ -68,8 +70,8 @@ class Excel:
     cmd.append("--convert-to")
     cmd.append("pdf")
     cmd.append("--outdir")
-    cmd.append("/app/api/domain/excel/")
-    cmd.append(f"/app/api/domain/excel/{self.file_name}.xlsx")
+    cmd.append("/app/api/domain/excel/files")
+    cmd.append(f"/app/api/domain/excel/files/{self.file_name}.xlsx")
 
     subprocess.run(" ".join(cmd), shell=True)
 
@@ -80,10 +82,13 @@ class Excel:
     cmd.append("-dBATCH")
     cmd.append("-dNOPAUSE")
     cmd.append("-dSAFER")
-    cmd.append(f"-sOUTPUTFILE=/app/api/domain/excel/{self.file_name}.pdf")
-    cmd.append(f"/app/api/domain/excel/{self.file_name}.pdf")
+    cmd.append(f"-sOUTPUTFILE=/app/api/domain/excel/files/{self.file_name}.pdf")
+    cmd.append(f"/app/api/domain/excel/files/{self.file_name}.pdf")
 
     subprocess.run(" ".join(cmd), shell=True)
+    return FileResponse(path=f"/app/api/domain/excel/files/{self.file_name}.pdf", filename=f"{self.file_name}.pdf")
 
   def removeFiles(self):
-    os.remove(f"/app/api/domain/excel/{self.file_name}.xlsx")
+    if(os.path.isdir('/app/api/domain/excel/files') == True):
+      shutil.rmtree('/app/api/domain/excel/files')
+    os.mkdir('/app/api/domain/excel/files')

@@ -5,3 +5,4 @@ app/__pycache__
 *.pdf
 .DS_Store
 .pytest_cache
+app/api/domain/excel/files
