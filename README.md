@@ -67,14 +67,6 @@ POSTGRES_PORT=5432
 POSTGRES_DB="test"
 ```
 
-### 1.1. docker/env/auth.env を作成する
-
-デプロイ時にSECRET_KEYの値を変えます
-```env
-SECRET_KEY='e40e2e83874fef7b97a1442c359cfc9ec79b78e4b13a22a97f90a9b5eff6e469'
-ALGORITHM='HS256'
-ACCESS_TOKEN_EXPIRE_MINUTES=30
-```
 
 ## 2. コンテナを立ち上げる
 
