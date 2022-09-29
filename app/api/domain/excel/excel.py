@@ -55,7 +55,7 @@ class Excel:
       # 合計勤務時間
       ws[f"O{14+index}"].value = f"{ptj.office_hours}時間"
       # 活動内容詳細
-      ws[f"S{14+index}"].value = f"{ptj.duties} 休憩:{ptj.break_time_minutes}時間"
+      ws[f"S{14+index}"].value = f"{ptj.duties} 休憩:{ptj.break_time_minutes}分"
       sum_working_hours += ptj.office_hours
     # 活動時間計
     ws["O34"].value = f"{sum_working_hours}時間"
