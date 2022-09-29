@@ -14,6 +14,7 @@ def read_json(post_data: PostModel):
   excel.edit()
   excel.convertExcelToPdf()
   response = excel.pdfCompress()
+  response.headers["Cache-Control"] = "no-cache, no-store"
   return response
 
 app.include_router(subject.router)
