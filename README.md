@@ -55,9 +55,9 @@ def convertExcelToPdf(self):
 
 # セットアップ
 
-## 1. docker/env/db.env を作成する
+## 1. envファイルを作成する
 
-USERとPASSWORDは学籍番号
+### docker/env/db.env
 
 ```env
 POSTGRES_USER=
@@ -65,6 +65,27 @@ POSTGRES_PASSWORD=
 POSTGRES_SERVER=127.0.0.1
 POSTGRES_PORT=5432
 POSTGRES_DB="test"
+```
+
+### docker/env/auth.env
+
+```env
+SECRET_KEY=
+ALGORITHM=
+ACCESS_TOKEN_EXPIRE_MINUTES=
+```
+
+SECRET_KEYは以下のコマンドで作成する
+
+```shell
+openssl rand -hex 32
+```
+
+### docker/env/admin.env
+
+```env
+ADMIN_STUDENT_NUMBER=
+ADMIN_PASSWORD=
 ```
 
 
