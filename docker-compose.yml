@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile
     env_file:
       - docker/env/db.env
+      - docker/env/auth.env
+      - docker/env/admin.env
     volumes:
       - ./app:/app
     ports:

@@ -27,6 +27,7 @@ class Excel:
     self.end_date = f"{yaer}年{month}月{month_range}日"
     # ファイル名
     self.file_name = f"{self.student_number}-{self.ptj_list[0].date.strftime('%Y-%-m')}-{self.subject}"
+    self.storage_path = f"{yaer}/{month}/{self.subject}/{self.student_number}.pdf"
 
   def edit(self):
     wb = px.load_workbook("/app/api/domain/excel/SA.xlsx")
@@ -55,7 +56,7 @@ class Excel:
       # 合計勤務時間
       ws[f"O{14+index}"].value = f"{ptj.office_hours}時間"
       # 活動内容詳細
-      ws[f"S{14+index}"].value = f"{ptj.duties} 休憩:{ptj.break_time_minutes}分"
+      ws[f"S{14+index}"].value = f"{ptj.duties} 休憩:{int(ptj.break_time_minutes)}分"
       sum_working_hours += ptj.office_hours
     # 活動時間計
     ws["O34"].value = f"{sum_working_hours}時間"

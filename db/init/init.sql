@@ -1,10 +1,10 @@
 drop table if exists auth_user; -- auth_userテーブルがすでに存在すれば削除する
-create TYPE user_type_enum AS ENUM ('SA', 'TA');
+create TYPE user_type_enum AS ENUM ('SA', 'TA', 'ADMIN');
 create table users (
-    student_number varchar(32) primary key, --学籍番号
+    student_number varchar(8) primary key, --学籍番号
     name varchar(32) not null, --学生の名前
-    pass varchar(32) not null, --パスワード
-    type user_type_enum not null --SAかTA
+    password varchar(64) not null, --パスワード
+    type user_type_enum not null
 );
 
 drop table if exists subjects;

@@ -1,5 +1,4 @@
 from pydantic import BaseModel, Field
-from typing import List
 
 class SubjectBase(BaseModel):
   name: str = Field(None, example="教科名")
