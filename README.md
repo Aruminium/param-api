@@ -20,13 +20,14 @@
 - SQLAlchemy 1.4.41
 - openpyxl 3.0.10
 
+## 詳細は以下のドキュメントを参照
+
 [APIコンテナのドキュメント](https://github.com/Aruminium/param-api/tree/main/app)
 
 [DBコンテナのドキュメント](https://github.com/Aruminium/param-api/tree/main/db)
 
 
 ## エクセルファイルを操作する
-
 
 
 ## xlsx -> pdf
@@ -51,6 +52,7 @@ def convertExcelToPdf(self):
 
 # APIエンドポイント
 
+<img width="631" alt="fastapi-endpoint" src="https://user-images.githubusercontent.com/73931800/194210742-300e452d-d2d2-4839-ad44-7a093d52f38b.png">
 
 
 # セットアップ
@@ -141,9 +143,10 @@ docker compose up -d
 
 ### 4.2 localhost:5000/docsにアクセス
 
-[localhost:5000/docs](localhost:5000/docs)にアクセスすると以下のSwaggerUI(APIのドキュメント)が表示される
+<img width="172" alt="fastapi-auth" src="https://user-images.githubusercontent.com/73931800/194210910-878c2cfe-6f05-4258-a668-5016ee74198e.png">
 
-<img width="807" alt="スクリーンショット 2022-09-14 3 10 00" src="https://user-images.githubusercontent.com/73931800/189978181-ac7c45b4-aa58-4848-903a-43da7d05c9cf.png">
+を押して、管理者アカウントでログインしよう
+※認証しないと教科情報のCRUDはできません
 
 ### 4.3 Postしよう
 
