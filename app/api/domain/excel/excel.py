@@ -27,7 +27,8 @@ class Excel:
     self.end_date = f"{yaer}年{month}月{month_range}日"
     # ファイル名
     self.file_name = f"{self.student_number}-{self.ptj_list[0].date.strftime('%Y-%-m')}-{self.subject}"
-    self.storage_path = f"{yaer}/{month}/{self.subject}/{self.student_number}.pdf"
+    self.path = f"app/api/domain/excel/files/{self.file_name}"
+    self.storage_path = f"{yaer}/{month}/{self.subject}/{self.file_name}.pdf"
 
   def edit(self):
     wb = px.load_workbook("/app/api/domain/excel/SA.xlsx")

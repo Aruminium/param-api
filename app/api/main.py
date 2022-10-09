@@ -4,6 +4,7 @@ from domain.excel.Model.post import PostModel
 from domain.excel.excel import Excel
 from routers import subject
 from routers import auth
+from domain.s3 import upload
 
 app = FastAPI()
 
