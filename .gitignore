@@ -6,3 +6,4 @@ app/__pycache__
 .DS_Store
 .pytest_cache
 app/api/domain/excel/files
+.aws
