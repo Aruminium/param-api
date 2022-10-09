@@ -10,6 +10,7 @@ services:
       - docker/env/db.env
       - docker/env/auth.env
       - docker/env/admin.env
+      - docker/env/s3.env
     volumes:
       - ./app:/app
     ports:
@@ -21,6 +22,7 @@ services:
       - backend
   db:
     image: postgres:14-alpine
+    command: postgres -c stats_temp_directory=/tmp
     container_name: db
     env_file:
       - docker/env/db.env
