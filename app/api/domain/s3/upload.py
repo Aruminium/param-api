@@ -1,6 +1,5 @@
 import subprocess
 import os
-from tkinter import Y
 
 def upload(path: str, s3_target_path) -> None:
   S3_BUCKET = os.environ["S3_BUCKET"]
