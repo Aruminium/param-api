@@ -33,6 +33,9 @@ class Excel:
   def edit(self):
     wb = px.load_workbook("/app/api/domain/excel/SA.xlsx")
     ws = wb.active
+    # SA/TA
+    if self.user_type is "TA":
+      ws["A1"].value = "ステューデントアシスタント(TA)実施報告書"
     # 学籍番号
     ws["J4"].value = self.student_number
     # 氏名

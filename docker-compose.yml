@@ -37,6 +37,21 @@ services:
     networks:
       - backend
 
+  spring:
+    build:
+      context: parm
+      dockerfile: Dockerfile
+    container_name: spring
+    tty: true
+    volumes:
+      - ./parm:/app
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    networks:
+      - backend
+
 networks:
   backend:
     driver: bridge
