@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:wicket="http://wicket.apache.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<wicket:panel>
+    <div class="container-fluid">
+        <form action="#" name="ptjDetailer" wicket:id="ptjDetailer">
+            <div class="mb-3 row">
+                <label for="date" class="form-label">日時</label>
+                <input type="text" class="form-control" id="date" wicket:id="date"/>
+            </div>
+            <div class="mb-3 row">
+                <label for="userType" class="form-label">ユーザタイプ</label>
+                <input type="text" class="form-control" id="userType" wicket:id="userType"/>
+            </div>
+            <div class="mb-3 row">
+                <label for="subjectChoice" class="form-label">勤務科目</label>
+                <select class="form-select" id="subjectChoice" name="subjectChoice" wicket:id="subjectChoice"
+                        required></select>
+            </div>
+            <div class="mb-3 row">
+                <label class="form-label">勤務時間</label>
+                <div class="row gy-2 gx-2 mb-2 align-items-center">
+                    <div class="col-auto">
+                        <div class="input-group">
+                            <label>
+                                <select class="form-select" name="startHour" wicket:id="startHour"
+                                        aria-describedby="startHour" required></select>
+                            </label>
+                            <span class="input-group-text" id="workingStartHours_suffix">時</span>
+                            <label>
+                                <select class="form-select" name="startMinutes" wicket:id="startMinutes"
+                                        aria-describedby="startMinutes" required></select>
+                            </label>
+                            <span class="input-group-text" id="startMinutes">分</span>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        ～
+                    </div>
+                    <div class="col-auto">
+                        <div class="input-group">
+                            <label>
+                                <select class="form-select" name="finishHour" wicket:id="finishHour"
+                                        aria-describedby="finishHour" required></select>
+                            </label>
+                            <span class="input-group-text" id="workingEndHours_suffix">時</span>
+                            <label>
+                                <select class="form-select" name="finishMinutes" wicket:id="finishMinutes"
+                                        aria-describedby="finishMinutes" required></select>
+                            </label>
+                            <span class="input-group-text" id="finishMinutes">分</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gy-2 gx-2 mb-2 align-items-center">
+                    <div class="col-auto">
+                        休憩
+                    </div>
+                    <div class="col-auto">
+                        <div class="input-group">
+                            <label>
+                                <select class="form-select" name="breakTime" wicket:id="breakTime"
+                                        aria-describedby="breakTime_suffix" required></select>
+                            </label>
+                            <span class="input-group-text" id="breakTime_suffix">分</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gy-2 gx-2 align-items-center">
+                    <div class="col-auto">
+                        → 合計勤務時間
+                    </div>
+                    <div class="col-auto">
+                        <div class="input-group">
+                            <label for="officeHour">
+                                <input type="text" class="form-control" wicket:id="officeHour"/>
+                            </label>
+                            <span class="input-group-text" id="officeHour">時間</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="workingContent" class="form-label">勤務内容</label>
+                <select class="form-select" id="workingContent" name="workingContent" wicket:id="workingContent"
+                        required></select>
+            </div>
+            <div class="alert alert-danger row" role="alert" wicket:id="officeHoursFeedback"></div>
+            <div class="row my-3 justify-content-sm-start justify-content-center">
+                <button type="submit" class="btn btn-primary col-8 col-sm-4" wicket:id="submit">
+                    <div wicket:id="sendButtonLabel"></div>
+                </button>
+            </div>
+        </form>
+        <div class="row my-3 justify-content-sm-start justify-content-center">
+            <a class="btn btn-secondary col-8 col-sm-4" wicket:id="returnPartTimeJobPage">
+                <i class="fa-solid fa-turn-down-left"></i>
+                戻る
+            </a>
+        </div>
+    </div>
+</wicket:panel>
+</body>
+</html>
