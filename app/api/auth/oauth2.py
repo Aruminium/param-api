@@ -13,7 +13,6 @@ import os
 from schemas.user import User
 
 SECRET_KEY = os.environ['SECRET_KEY']
-ALGORITHM = os.environ['ALGORITHM']
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
