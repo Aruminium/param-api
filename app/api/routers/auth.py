@@ -25,17 +25,6 @@ ACCESS_TOKEN_EXPIRE_MINUTES = os.environ['ACCESS_TOKEN_EXPIRE_MINUTES']
 
 @router.post("/token", response_model=Token)
 async def get_token(request: OAuth2PasswordRequestForm = Depends(), db: AsyncSession = Depends(get_db)):
-  if not request.username == ADMIN_STUDENT_NUMBER:
-    raise HTTPException(
-      status_code=status.HTTP_404_NOT_FOUND,
-      detail="Incorrect studentnumber"
-    )
-  if not request.password == ADMIN_PASSWORD:
-    raise HTTPException(
-      status_code=status.HTTP_404_NOT_FOUND,
-      detail='Incorrect password'
-    )
-
   user = await user_cruds.get_user(db, request.username)
 
   if not user:
