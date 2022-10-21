@@ -13,7 +13,8 @@ RUN apk update \
         libreoffice \
         libreoffice-base \
         libreoffice-lang-ja \
-        font-noto-cjk
+        font-noto-cjk \
+    && apk add gcc musl-dev python3-dev libffi-dev openssl-dev cargo
 
 RUN apk add libpq-dev
 
