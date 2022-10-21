@@ -68,7 +68,7 @@ class Excel:
       sum_working_hours += ptj.office_hours
     # 活動時間計
     ws["O34"].value = f"{sum_working_hours}時間"
-    wb.save(f"/app/api/domain/excel/files/{self.file_name}.xlsx")
+    self.wb.save(f"/app/api/domain/excel/files/{self.file_name}.xlsx")
 
   def convertExcelToPdf(self):
     cmd = []
