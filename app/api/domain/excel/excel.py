@@ -29,10 +29,14 @@ class Excel:
     self.file_name = f"{self.student_number}-{self.ptj_list[0].date.strftime('%Y-%-m')}-{self.subject}"
     self.path = f"app/api/domain/excel/files/{self.file_name}"
     self.storage_path = f"{yaer}/{month}/{self.subject}/{self.file_name}.pdf"
+    
+    if self.user_type is "SA":
+      self.wb = px.load_workbook("/app/api/domain/excel/SA.xlsx")
+    else:
+      self.wb = px.load_workbook("/app/api/domain/excel/TA.xlsx")
 
   def edit(self):
-    wb = px.load_workbook("/app/api/domain/excel/SA.xlsx")
-    ws = wb.active
+    ws = self.wb.active
     # SA/TA
     if self.user_type is "TA":
       ws["A1"].value = "ステューデントアシスタント(TA)実施報告書"
