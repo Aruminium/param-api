@@ -1,19 +1,22 @@
-{
-  "properties": [
-    {
-      "name": "admin.studentNumber",
-      "type": "java.lang.String",
-      "description": "Description for admin.studentNumber."
-    },
-    {
-      "name": "admin.password",
-      "type": "java.lang.String",
-      "description": "Description for admin.password."
-    },
-    {
-      "name": "param.api.url",
-      "type": "java.lang.String",
-      "description": "Description for param.api.url."
-    }
-  ]
-}
+{"properties": [
+  {
+    "name": "admin.studentNumber",
+    "type": "java.lang.String",
+    "description": "Description for admin.studentNumber."
+  },
+  {
+    "name": "admin.password",
+    "type": "java.lang.String",
+    "description": "Description for admin.password."
+  },
+  {
+    "name": "param.api.url",
+    "type": "java.lang.String",
+    "description": "Description for param.api.url."
+  },
+  {
+    "name": "admin.studentNumber",
+    "type": "java.lang.String",
+    "description": "A description for 'admin.studentNumber'"
+  }
+]}
