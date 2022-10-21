@@ -19,6 +19,7 @@ python-jose = "^3.3.0"
 ghostscript = "^0.7"
 boto3 = "^1.24.84"
 pyjwt = {extras = ["crypto"], version = "^2.6.0"}
+cryptography = "^38.0.1"
 
 
 [tool.poetry.group.dev.dependencies]
