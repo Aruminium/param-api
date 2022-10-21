@@ -28,7 +28,7 @@ async def get_token(request: OAuth2PasswordRequestForm = Depends(), db: AsyncSes
   if not request.username == ADMIN_STUDENT_NUMBER:
     raise HTTPException(
       status_code=status.HTTP_404_NOT_FOUND,
-      detail="Invalid credentials"
+      detail="Incorrect studentnumber"
     )
   if not request.password == ADMIN_PASSWORD:
     raise HTTPException(
