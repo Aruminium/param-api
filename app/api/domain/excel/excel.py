@@ -30,7 +30,7 @@ class Excel:
     self.path = f"app/api/domain/excel/files/{self.file_name}"
     self.storage_path = f"{yaer}/{month}/{self.subject}/{self.file_name}.pdf"
     
-    if self.user_type is "SA":
+    if self.user_type == "SA":
       self.wb = px.load_workbook("/app/api/domain/excel/SA.xlsx")
     else:
       self.wb = px.load_workbook("/app/api/domain/excel/TA.xlsx")
